@@ -14,6 +14,8 @@
 		256695C628FE2D9200A6792B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 256695C528FE2D9200A6792B /* Assets.xcassets */; };
 		256695C928FE2D9200A6792B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 256695C728FE2D9200A6792B /* LaunchScreen.storyboard */; };
 		256695D128FE390B00A6792B /* SimpleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256695D028FE390B00A6792B /* SimpleCollectionViewController.swift */; };
+		25BE9FB0290695B0006396E1 /* SimpleNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE9FAF290695B0006396E1 /* SimpleNumberViewController.swift */; };
+		25BE9FB229069C99006396E1 /* ValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE9FB129069C99006396E1 /* ValidationViewController.swift */; };
 		25D9948928FF907600C34305 /* DiffableCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D9948828FF907600C34305 /* DiffableCollectionViewController.swift */; };
 		25D994972900C8BD00C34305 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 25D994962900C8BD00C34305 /* .gitignore */; };
 		25D9949C2900C93A00C34305 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D9949B2900C93A00C34305 /* APIKey.swift */; };
@@ -29,6 +31,9 @@
 		25D994BB290622B100C34305 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 25D994BA290622B100C34305 /* RxCocoa */; };
 		25D994BD290622B100C34305 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 25D994BC290622B100C34305 /* RxSwift */; };
 		25D994C0290625B700C34305 /* RXCocoaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D994BF290625B700C34305 /* RXCocoaViewController.swift */; };
+		25D994C629067F4500C34305 /* SimplePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D994C529067F4500C34305 /* SimplePickerViewController.swift */; };
+		25D994CA29067FA100C34305 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 25D994C929067FA100C34305 /* Then */; };
+		25D994CD2906804F00C34305 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 25D994CC2906804F00C34305 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +46,8 @@
 		256695C828FE2D9200A6792B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		256695CA28FE2D9200A6792B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		256695D028FE390B00A6792B /* SimpleCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCollectionViewController.swift; sourceTree = "<group>"; };
+		25BE9FAF290695B0006396E1 /* SimpleNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleNumberViewController.swift; sourceTree = "<group>"; };
+		25BE9FB129069C99006396E1 /* ValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationViewController.swift; sourceTree = "<group>"; };
 		25D9948828FF907600C34305 /* DiffableCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableCollectionViewController.swift; sourceTree = "<group>"; };
 		25D994962900C8BD00C34305 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		25D9949B2900C93A00C34305 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
@@ -52,6 +59,7 @@
 		25D994AE2900EE1100C34305 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		25D994B42900EF8000C34305 /* SearchPhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotoModel.swift; sourceTree = "<group>"; };
 		25D994BF290625B700C34305 /* RXCocoaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXCocoaViewController.swift; sourceTree = "<group>"; };
+		25D994C529067F4500C34305 /* SimplePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,8 +67,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25D994CA29067FA100C34305 /* Then in Frameworks */,
 				25D994BB290622B100C34305 /* RxCocoa in Frameworks */,
 				25D994B82900F11800C34305 /* Kingfisher in Frameworks */,
+				25D994CD2906804F00C34305 /* SnapKit in Frameworks */,
 				25D994BD290622B100C34305 /* RxSwift in Frameworks */,
 				25D994B22900EF0500C34305 /* Alamofire in Frameworks */,
 			);
@@ -89,17 +99,16 @@
 		256695BB28FE2D9100A6792B /* SeSACWeek1617 */ = {
 			isa = PBXGroup;
 			children = (
-				25D994BE2906259700C34305 /* RX */,
+				25D994C12906699700C34305 /* New Group */,
 				25D9949D2900CD7B00C34305 /* Application */,
 				25D994AD2900EDD700C34305 /* Network */,
 				25D994A82900ECCC00C34305 /* Diffable */,
 				25D9949E2900CD8900C34305 /* MVVMSample */,
-				256695C028FE2D9100A6792B /* SimpleTableViewController.swift */,
-				256695D028FE390B00A6792B /* SimpleCollectionViewController.swift */,
 				256695C228FE2D9100A6792B /* Main.storyboard */,
 				256695C528FE2D9200A6792B /* Assets.xcassets */,
 				256695C728FE2D9200A6792B /* LaunchScreen.storyboard */,
 				256695CA28FE2D9200A6792B /* Info.plist */,
+				25D994BE2906259700C34305 /* RX */,
 				25D994982900C91C00C34305 /* Resources */,
 			);
 			path = SeSACWeek1617;
@@ -186,9 +195,21 @@
 		25D994BE2906259700C34305 /* RX */ = {
 			isa = PBXGroup;
 			children = (
+				25BE9FB129069C99006396E1 /* ValidationViewController.swift */,
+				256695D028FE390B00A6792B /* SimpleCollectionViewController.swift */,
+				256695C028FE2D9100A6792B /* SimpleTableViewController.swift */,
 				25D994BF290625B700C34305 /* RXCocoaViewController.swift */,
+				25D994C529067F4500C34305 /* SimplePickerViewController.swift */,
+				25BE9FAF290695B0006396E1 /* SimpleNumberViewController.swift */,
 			);
 			path = RX;
+			sourceTree = "<group>";
+		};
+		25D994C12906699700C34305 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,6 +233,8 @@
 				25D994B72900F11800C34305 /* Kingfisher */,
 				25D994BA290622B100C34305 /* RxCocoa */,
 				25D994BC290622B100C34305 /* RxSwift */,
+				25D994C929067FA100C34305 /* Then */,
+				25D994CC2906804F00C34305 /* SnapKit */,
 			);
 			productName = SeSACWeek1617;
 			productReference = 256695B928FE2D9100A6792B /* SeSACWeek1617.app */;
@@ -245,6 +268,8 @@
 				25D994B02900EF0500C34305 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				25D994B62900F11700C34305 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				25D994B9290622B100C34305 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				25D994C829067FA100C34305 /* XCRemoteSwiftPackageReference "Then" */,
+				25D994CB2906804F00C34305 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 256695BA28FE2D9100A6792B /* Products */;
 			projectDirPath = "";
@@ -278,11 +303,14 @@
 				25D994A52900D24200C34305 /* NewsViewModel.swift in Sources */,
 				25D994AC2900ED5200C34305 /* DiffableViewModel.swift in Sources */,
 				25D994A12900CF7F00C34305 /* CObservable.swift in Sources */,
+				25D994C629067F4500C34305 /* SimplePickerViewController.swift in Sources */,
 				256695D128FE390B00A6792B /* SimpleCollectionViewController.swift in Sources */,
 				256695C128FE2D9100A6792B /* SimpleTableViewController.swift in Sources */,
 				25D994C0290625B700C34305 /* RXCocoaViewController.swift in Sources */,
+				25BE9FB229069C99006396E1 /* ValidationViewController.swift in Sources */,
 				256695BD28FE2D9100A6792B /* AppDelegate.swift in Sources */,
 				25D9949C2900C93A00C34305 /* APIKey.swift in Sources */,
+				25BE9FB0290695B0006396E1 /* SimpleNumberViewController.swift in Sources */,
 				256695BF28FE2D9100A6792B /* SceneDelegate.swift in Sources */,
 				25D994A72900D78000C34305 /* News.swift in Sources */,
 				25D994B52900EF8000C34305 /* SearchPhotoModel.swift in Sources */,
@@ -537,6 +565,22 @@
 				minimumVersion = 6.0.0;
 			};
 		};
+		25D994C829067FA100C34305 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		25D994CB2906804F00C34305 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -559,6 +603,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 25D994B9290622B100C34305 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		25D994C929067FA100C34305 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 25D994C829067FA100C34305 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		25D994CC2906804F00C34305 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 25D994CB2906804F00C34305 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

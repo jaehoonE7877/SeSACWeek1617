@@ -40,8 +40,6 @@ class APIService {
                 
                 completion(nil, statusCode, error)
             }
-            
-            
         }
     }
     

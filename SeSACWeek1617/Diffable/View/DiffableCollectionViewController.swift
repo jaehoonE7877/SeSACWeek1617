@@ -28,7 +28,6 @@ final class DiffableCollectionViewController: UIViewController {
         configureDataSource()
         setBinding()
         
-        
     }
     
     private func setBinding() {
