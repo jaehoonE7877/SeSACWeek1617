@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import RxSwift
 
 final class NewsViewModel {
     
-    var pageNumber: CObservable<String> = CObservable("3000")
+    var pageNumber = BehaviorSubject(value: "3000")
     
-    var newsSample: CObservable<[News.NewsItem]> = CObservable(News.items)
+    var newsSample = PublishSubject<[News.NewsItem]>()
     
 }
 
@@ -23,14 +24,14 @@ extension NewsViewModel {
         let text = text.replacingOccurrences(of: ",", with: "")
         guard let numberText = Int(text) else { return }
         let result = formatter.string(for: numberText)!
-        pageNumber.value = result
+        pageNumber.onNext(result)
     }
     
     func resetSample() {
-        newsSample.value = []
+        newsSample.onNext([])
     }
     
     func loadSample() {
-        newsSample.value = News.items
+        newsSample.onNext(News.items)
     }
 }

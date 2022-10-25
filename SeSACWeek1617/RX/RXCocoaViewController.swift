@@ -49,6 +49,25 @@ final class RXCocoaViewController: UIViewController {
         print("RxCocoaExampleViewController")
     }
     
+    private func sampleTest() {
+        
+        let observable = Observable.just("JaeHoon")
+        //subscribe
+        // observer 가 관찰을 하도록 만듬 즉, observable
+        observable
+            .subscribe {
+                self.nicknameLabel.text = $0
+            }
+            .disposed(by: disposeBag)
+        
+        //bind
+        // event가 발생할 때마다 onNext로 이벤트를 받아서 label에 보여줌!
+        observable
+            .bind(to: self.nicknameLabel.rx.text)
+            .disposed(by: disposeBag)
+
+    }
+    
     
     private func setTableView() {
         

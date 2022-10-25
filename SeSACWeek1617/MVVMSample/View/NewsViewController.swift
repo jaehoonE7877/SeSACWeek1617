@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+
 final class NewsViewController: UIViewController {
 
     @IBOutlet weak var numberTextField: UITextField!
@@ -15,6 +18,8 @@ final class NewsViewController: UIViewController {
     @IBOutlet weak var loadButton: UIButton!
     
     private var viewModel = NewsViewModel()
+    
+    let disposeBag = DisposeBag()
     
     private typealias CellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, News.NewsItem>
     private typealias DataSource = UICollectionViewDiffableDataSource<Int, News.NewsItem>
@@ -30,7 +35,7 @@ final class NewsViewController: UIViewController {
         configureDataSource()
         setBinding()
         
-        configureViews()
+        //configureViews()
     }
     
     private func setBinding() {
@@ -38,6 +43,7 @@ final class NewsViewController: UIViewController {
         viewModel.pageNumber.bind { value in
             self.numberTextField.text = value
         }
+        .disposed(by: disposeBag)
         
         viewModel.newsSample.bind { item in
             var snapshot = Snapshot()
@@ -45,26 +51,49 @@ final class NewsViewController: UIViewController {
             snapshot.appendItems(item)
             self.dataSource.apply(snapshot)
         }
+        .disposed(by: disposeBag)
+        
+        numberTextField.rx.text
+            .withUnretained(self)
+            .bind { vc, text in
+                vc.viewModel.changePageNumberFormat(text ?? "0")
+            }
+            .disposed(by: disposeBag)
+        
+        resetButton.rx.tap
+            .withUnretained(self)
+            .bind { vc, _ in
+                vc.viewModel.resetSample()
+            }
+            .disposed(by: disposeBag)
+        
+        loadButton.rx.tap
+            .withUnretained(self)
+            .bind { vc, _ in
+                vc.viewModel.loadSample()
+            }
+            .disposed(by: disposeBag)
+        
     }
     
-    private func configureViews() {
-        numberTextField.addTarget(self, action: #selector(numberTextFieldChanged), for: .editingChanged)
-        resetButton.addTarget(self, action: #selector(resetButtonTapped), for: .touchUpInside)
-        loadButton.addTarget(self, action: #selector(loadButtonTapped), for: .touchUpInside)
-    }
-    // 사용자의 액션에 따른 데이터 변경 지점
-    @objc func numberTextFieldChanged() {
-        guard let text = self.numberTextField.text else { return }
-        viewModel.changePageNumberFormat(text)
-    }
-    
-    @objc func resetButtonTapped() {
-        viewModel.resetSample()
-    }
-
-    @objc func loadButtonTapped() {
-        viewModel.loadSample()
-    }
+//    private func configureViews() {
+//        numberTextField.addTarget(self, action: #selector(numberTextFieldChanged), for: .editingChanged)
+//        resetButton.addTarget(self, action: #selector(resetButtonTapped), for: .touchUpInside)
+//        loadButton.addTarget(self, action: #selector(loadButtonTapped), for: .touchUpInside)
+//    }
+//    // 사용자의 액션에 따른 데이터 변경 지점
+//    @objc func numberTextFieldChanged() {
+//        guard let text = self.numberTextField.text else { return }
+//        viewModel.changePageNumberFormat(text)
+//    }
+//
+//    @objc func resetButtonTapped() {
+//        viewModel.resetSample()
+//    }
+//
+//    @objc func loadButtonTapped() {
+//        viewModel.loadSample()
+//    }
         
 }
 

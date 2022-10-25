@@ -46,14 +46,17 @@ class SubjectViewController: UIViewController {
         
         addButton.rx.tap
             .withUnretained(self)
-            .subscribe { vc, _ in
+//            .bind(to: { vc, _ in
+//                vc.viewModel.fetchContact()
+//            })
+            .bind { vc, _ in
                 vc.viewModel.fetchContact()
             }
             .disposed(by: disposeBag)
         
         resetButton.rx.tap
             .withUnretained(self)
-            .subscribe { vc, _ in
+            .bind { vc, _ in
                 vc.viewModel.resetContact()
             }
             .disposed(by: disposeBag)
