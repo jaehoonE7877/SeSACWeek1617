@@ -20,18 +20,35 @@ final class RXCocoaViewController: UIViewController {
     @IBOutlet weak var signEmail: UITextField!
     @IBOutlet weak var signButton: UIButton!
     
+    @IBOutlet weak var nicknameLabel: UILabel!
     
-    let disposeBag = DisposeBag()
+    var disposeBag = DisposeBag()
+    
+    var nickname = Observable.just("Jack")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        nickname
+            .bind(to: nicknameLabel.rx.text)
+            .disposed(by: disposeBag)
+            
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//            self.nickname = "HELLO"
+//        }
+        
         setTableView()
         setPickerView()
         setSwitch()
         setSign()
         setOperator()
     }
+    // viewcontroller deinit 되면, 알아서 disposed도 동작한다.
+    // 또는 DisposeBad() 객체를 새롭게 넣어주거나, nil을 할당. => 예외 케이스!(rootVC에 Infinite 시퀀스)
+    deinit {
+        print("RxCocoaExampleViewController")
+    }
+    
     
     private func setTableView() {
         
@@ -115,8 +132,9 @@ final class RXCocoaViewController: UIViewController {
             .disposed(by: disposeBag)
         
         signButton.rx.tap
-            .subscribe { _ in
-                self.showAlert()
+            .withUnretained(self)
+            .subscribe { vc, _ in
+                vc.showAlert()
             }
             .disposed(by: disposeBag)
     }
@@ -124,8 +142,8 @@ final class RXCocoaViewController: UIViewController {
     private func setOperator() {
         
         //네트워크를 했을 때 실패하면 몇 번을 다시 시도할지 이렇게 사용
-        Observable.repeatElement("Jack")
-            .take(5)
+        Observable.repeatElement("Jack") //  Infinite Observable Sequence
+            .take(5) // Finite Observable Sequence
             .subscribe { value in
                 print("reapeat - \(value)")
             } onError: { error in
@@ -137,7 +155,7 @@ final class RXCocoaViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        let intervalObservable = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+        Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
             .subscribe { value in
                 print("interval - \(value)")
             } onError: { error in
@@ -147,11 +165,11 @@ final class RXCocoaViewController: UIViewController {
             } onDisposed: {
                 print("interval disposed")
             }
-            //.disposed(by: disposeBag)
+            .disposed(by: disposeBag)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            intervalObservable.dispose()
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+//            self.disposeBag = DisposeBag() // 한번에 (Observable들)리소스 정리
+//        }
         
         
         let itemsA = [3.3, 4.0, 5.0, 2.0, 3.6, 4.8]
