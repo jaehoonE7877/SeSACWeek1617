@@ -6,8 +6,8 @@
 //
 
 import UIKit
-
-import Kingfisher
+import RxSwift
+import RxCocoa
 
 final class DiffableCollectionViewController: UIViewController {
     
@@ -16,13 +16,15 @@ final class DiffableCollectionViewController: UIViewController {
     
     private var viewModel = DiffableViewModel()
     
+    private let disposeBag = DisposeBag()
+    
     // Int -> Section에 대한 정보 , String -> 들어가는 모델의 타입<Jacsim>
     private var dataSource: UICollectionViewDiffableDataSource<Int, SearchResult>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
-        searchBar.delegate = self
+        //searchBar.delegate = self
         
         collectionView.collectionViewLayout = createLayout()
         configureDataSource()
@@ -31,16 +33,40 @@ final class DiffableCollectionViewController: UIViewController {
     }
     
     private func setBinding() {
+        // Output
+        // network는 subscribe로 에러 처리
+        viewModel.photoList
+            .withUnretained(self)
+            .subscribe(onNext: { (vc, photo) in
+                //Initial(스냅샷)
+                //어떤 섹션Int에 어떤 데이터<String>를 넣을 지 정하는 곳
+                var snapshot = NSDiffableDataSourceSnapshot<Int, SearchResult>()
+                snapshot.appendSections([0])
+                snapshot.appendItems(photo.results)
+                vc.dataSource.apply(snapshot)
+            }, onError: { error in
+                print("=======\(error)")
+            }, onCompleted: {
+                print("=======onCompleted")
+            }, onDisposed: {
+                print("=======onDisposed")
+            })
+            .disposed(by: disposeBag)
+        // 화면이 deinit될 때 구독해제하는 로직 DisposeBag()으로 인스턴스 생성하면 안됨!
+        // 새로운 인스턴스로 생성하면 구독하는 동시에 구독 해제됨
         
-        viewModel.photoList.bind { photo in
-            //Initial(스냅샷)
-            //어떤 섹션Int에 어떤 데이터<String>를 넣을 지 정하는 곳
-            var snapshot = NSDiffableDataSourceSnapshot<Int, SearchResult>()
-            snapshot.appendSections([0])
-            snapshot.appendItems(photo.results)
-            self.dataSource.apply(snapshot)
-            
-        }
+        //Input
+        searchBar
+            .rx
+            .text
+            .orEmpty
+            .debounce(.seconds(1), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .bind { (vc, text) in
+                vc.viewModel.requestSearchPhoto(query: text)
+            }
+            .disposed(by: disposeBag)
         
     }
 
@@ -91,8 +117,6 @@ extension DiffableCollectionViewController {
                 
             }
             
-            
-            
             var background = UIBackgroundConfiguration.listPlainCell()
             background.strokeWidth = 2
             background.strokeColor = .systemPink
@@ -112,11 +136,11 @@ extension DiffableCollectionViewController {
     
 }
 
-extension DiffableCollectionViewController: UISearchBarDelegate {
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let query = searchBar.text else { return }
-        viewModel.requestSearchPhoto(query: query)
-    }
-    
-}
+//extension DiffableCollectionViewController: UISearchBarDelegate {
+//
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        guard let query = searchBar.text else { return }
+//        viewModel.requestSearchPhoto(query: query)
+//    }
+//
+//}

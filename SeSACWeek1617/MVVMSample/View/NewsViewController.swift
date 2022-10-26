@@ -45,29 +45,37 @@ final class NewsViewController: UIViewController {
         }
         .disposed(by: disposeBag)
         
-        viewModel.newsSample.bind { item in
+        viewModel.newsSample
+            .withUnretained(self)
+            .bind { vc, item in
             var snapshot = Snapshot()
             snapshot.appendSections([0])
             snapshot.appendItems(item)
-            self.dataSource.apply(snapshot)
-        }
-        .disposed(by: disposeBag)
+            vc.dataSource.apply(snapshot, animatingDifferences: false)
+            }
+            .disposed(by: disposeBag)
         
-        numberTextField.rx.text
+        numberTextField
+            .rx
+            .text
             .withUnretained(self)
             .bind { vc, text in
                 vc.viewModel.changePageNumberFormat(text ?? "0")
             }
             .disposed(by: disposeBag)
         
-        resetButton.rx.tap
+        resetButton
+            .rx
+            .tap
             .withUnretained(self)
             .bind { vc, _ in
                 vc.viewModel.resetSample()
             }
             .disposed(by: disposeBag)
         
-        loadButton.rx.tap
+        loadButton
+            .rx
+            .tap
             .withUnretained(self)
             .bind { vc, _ in
                 vc.viewModel.loadSample()

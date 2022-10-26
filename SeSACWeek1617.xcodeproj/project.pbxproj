@@ -18,6 +18,7 @@
 		25BE9FB229069C99006396E1 /* ValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE9FB129069C99006396E1 /* ValidationViewController.swift */; };
 		25BE9FC429077A4C006396E1 /* SubjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE9FC329077A4C006396E1 /* SubjectViewController.swift */; };
 		25BE9FC8290788A5006396E1 /* SubjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE9FC7290788A5006396E1 /* SubjectViewModel.swift */; };
+		25BE9FCD2908CC9A006396E1 /* SubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE9FCC2908CC9A006396E1 /* SubscribeViewController.swift */; };
 		25D9948928FF907600C34305 /* DiffableCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D9948828FF907600C34305 /* DiffableCollectionViewController.swift */; };
 		25D994972900C8BD00C34305 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 25D994962900C8BD00C34305 /* .gitignore */; };
 		25D9949C2900C93A00C34305 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D9949B2900C93A00C34305 /* APIKey.swift */; };
@@ -52,6 +53,7 @@
 		25BE9FB129069C99006396E1 /* ValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationViewController.swift; sourceTree = "<group>"; };
 		25BE9FC329077A4C006396E1 /* SubjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectViewController.swift; sourceTree = "<group>"; };
 		25BE9FC7290788A5006396E1 /* SubjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectViewModel.swift; sourceTree = "<group>"; };
+		25BE9FCC2908CC9A006396E1 /* SubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeViewController.swift; sourceTree = "<group>"; };
 		25D9948828FF907600C34305 /* DiffableCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableCollectionViewController.swift; sourceTree = "<group>"; };
 		25D994962900C8BD00C34305 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		25D9949B2900C93A00C34305 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 		256695BB28FE2D9100A6792B /* SeSACWeek1617 */ = {
 			isa = PBXGroup;
 			children = (
+				25BE9FCB2908CBCA006396E1 /* Subscribe */,
 				25D994C12906699700C34305 /* Subject */,
 				25D9949D2900CD7B00C34305 /* Application */,
 				25D994AD2900EDD700C34305 /* Network */,
@@ -132,6 +135,14 @@
 				25BE9FC7290788A5006396E1 /* SubjectViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		25BE9FCB2908CBCA006396E1 /* Subscribe */ = {
+			isa = PBXGroup;
+			children = (
+				25BE9FCC2908CC9A006396E1 /* SubscribeViewController.swift */,
+			);
+			path = Subscribe;
 			sourceTree = "<group>";
 		};
 		25D994982900C91C00C34305 /* Resources */ = {
@@ -330,6 +341,7 @@
 				256695D128FE390B00A6792B /* SimpleCollectionViewController.swift in Sources */,
 				256695C128FE2D9100A6792B /* SimpleTableViewController.swift in Sources */,
 				25D994C0290625B700C34305 /* RXCocoaViewController.swift in Sources */,
+				25BE9FCD2908CC9A006396E1 /* SubscribeViewController.swift in Sources */,
 				25BE9FB229069C99006396E1 /* ValidationViewController.swift in Sources */,
 				256695BD28FE2D9100A6792B /* AppDelegate.swift in Sources */,
 				25D9949C2900C93A00C34305 /* APIKey.swift in Sources */,

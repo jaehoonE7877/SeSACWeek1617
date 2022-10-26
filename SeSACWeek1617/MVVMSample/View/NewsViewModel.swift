@@ -7,12 +7,13 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 final class NewsViewModel {
     
-    var pageNumber = BehaviorSubject(value: "3000")
-    
-    var newsSample = PublishSubject<[News.NewsItem]>()
+    var pageNumber = BehaviorSubject<String>(value: "3000")
+    // 내부에서 가져오는 데이터()
+    var newsSample = PublishRelay<[News.NewsItem]>()
     
 }
 
@@ -28,10 +29,10 @@ extension NewsViewModel {
     }
     
     func resetSample() {
-        newsSample.onNext([])
+        newsSample.accept([])
     }
     
     func loadSample() {
-        newsSample.onNext(News.items)
+        newsSample.accept(News.items)
     }
 }

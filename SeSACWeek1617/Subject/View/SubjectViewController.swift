@@ -80,8 +80,6 @@ class SubjectViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-
-     
 }
 
 extension SubjectViewController {
