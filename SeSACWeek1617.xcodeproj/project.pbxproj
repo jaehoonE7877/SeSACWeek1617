@@ -19,6 +19,7 @@
 		25BE9FC429077A4C006396E1 /* SubjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE9FC329077A4C006396E1 /* SubjectViewController.swift */; };
 		25BE9FC8290788A5006396E1 /* SubjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE9FC7290788A5006396E1 /* SubjectViewModel.swift */; };
 		25BE9FCD2908CC9A006396E1 /* SubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE9FCC2908CC9A006396E1 /* SubscribeViewController.swift */; };
+		25BEA02A290A22D3006396E1 /* ValidationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BEA029290A22D3006396E1 /* ValidationViewModel.swift */; };
 		25D9948928FF907600C34305 /* DiffableCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D9948828FF907600C34305 /* DiffableCollectionViewController.swift */; };
 		25D994972900C8BD00C34305 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 25D994962900C8BD00C34305 /* .gitignore */; };
 		25D9949C2900C93A00C34305 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D9949B2900C93A00C34305 /* APIKey.swift */; };
@@ -54,6 +55,7 @@
 		25BE9FC329077A4C006396E1 /* SubjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectViewController.swift; sourceTree = "<group>"; };
 		25BE9FC7290788A5006396E1 /* SubjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectViewModel.swift; sourceTree = "<group>"; };
 		25BE9FCC2908CC9A006396E1 /* SubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeViewController.swift; sourceTree = "<group>"; };
+		25BEA029290A22D3006396E1 /* ValidationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationViewModel.swift; sourceTree = "<group>"; };
 		25D9948828FF907600C34305 /* DiffableCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableCollectionViewController.swift; sourceTree = "<group>"; };
 		25D994962900C8BD00C34305 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		25D9949B2900C93A00C34305 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 		25D994BE2906259700C34305 /* RX */ = {
 			isa = PBXGroup;
 			children = (
+				25BEA029290A22D3006396E1 /* ValidationViewModel.swift */,
 				25BE9FB129069C99006396E1 /* ValidationViewController.swift */,
 				256695D028FE390B00A6792B /* SimpleCollectionViewController.swift */,
 				256695C028FE2D9100A6792B /* SimpleTableViewController.swift */,
@@ -347,6 +350,7 @@
 				25D9949C2900C93A00C34305 /* APIKey.swift in Sources */,
 				25BE9FB0290695B0006396E1 /* SimpleNumberViewController.swift in Sources */,
 				256695BF28FE2D9100A6792B /* SceneDelegate.swift in Sources */,
+				25BEA02A290A22D3006396E1 /* ValidationViewModel.swift in Sources */,
 				25D994A72900D78000C34305 /* News.swift in Sources */,
 				25D994B52900EF8000C34305 /* SearchPhotoModel.swift in Sources */,
 				25D994AF2900EE1100C34305 /* APIService.swift in Sources */,
