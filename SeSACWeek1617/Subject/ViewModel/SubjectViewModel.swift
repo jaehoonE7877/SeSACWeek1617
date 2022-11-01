@@ -15,7 +15,33 @@ struct Contact {
     var phoneNumber: String
 }
 
-class SubjectViewModel {
+class SubjectViewModel: ViewModelType {
+    
+    struct Input{
+        let addTap: ControlEvent<Void>
+        let resetTap: ControlEvent<Void>
+        let newTap: ControlEvent<Void>
+        let searchText: ControlProperty<String?>
+    }
+    
+    struct OutPut {
+        let addTap: ControlEvent<Void>
+        let resetTap: ControlEvent<Void>
+        let newTap: ControlEvent<Void>
+        let list: Driver<[Contact]>
+        let searchText: Observable<String>
+    }
+    
+    func transform(input: Input) -> OutPut {
+        
+        let list = list.asDriver(onErrorJustReturn: [])
+        
+        let text = input.searchText.orEmpty
+            .debounce(RxTimeInterval.seconds(1), scheduler: MainScheduler.instance) //디바운스 -> 사용자가 입력하고 멈춘 시점에서 1초 뒤에 검색시작
+            .distinctUntilChanged()
+        
+        return OutPut(addTap: input.addTap, resetTap: input.resetTap, newTap: input.newTap, list: list, searchText: text)
+    }
     
     var contactData = [
         Contact(name: "Jack", age: 21, phoneNumber: "01012341234"),

@@ -38,41 +38,38 @@ class SubjectViewController: UIViewController {
                 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ContactCell")
         
-        viewModel.list.bind(to: tableView.rx.items(cellIdentifier: "ContactCell", cellType: UITableViewCell.self)) { (row, element, cell) in
+        let input = SubjectViewModel.Input(addTap: addButton.rx.tap, resetTap: resetButton.rx.tap, newTap: newButton.rx.tap, searchText: searchBar.rx.text)
+        let output = viewModel.transform(input: input)
+        
+        output.list
+            .drive(tableView.rx.items(cellIdentifier: "ContactCell", cellType: UITableViewCell.self)) { (row, element, cell) in
             cell.textLabel?.text = "\(element.name): \(element.age)세 (\(element.phoneNumber))"
-            
         }
         .disposed(by: disposeBag)
         
-        addButton.rx.tap
+        output.addTap
             .withUnretained(self)
-//            .bind(to: { vc, _ in
-//                vc.viewModel.fetchContact()
-//            })
             .bind { vc, _ in
                 vc.viewModel.fetchContact()
             }
             .disposed(by: disposeBag)
         
-        resetButton.rx.tap
+        output.resetTap
             .withUnretained(self)
             .bind { vc, _ in
                 vc.viewModel.resetContact()
             }
             .disposed(by: disposeBag)
         
-        newButton.rx.tap
+        output.newTap //VC -> VM (Input)
             .withUnretained(self)
             .subscribe { vc, _ in
                 vc.viewModel.addContact()
             }
             .disposed(by: disposeBag)
         
-        searchBar.rx.text.orEmpty
+        output.searchText
             .withUnretained(self)
-        //디바운스 -> 사용자가 입력하고 멈춘 시점에서 1초 뒤에 검색시작
-            .debounce(RxTimeInterval.seconds(1), scheduler: MainScheduler.instance)
-            //.distinctUntilChanged()
             .subscribe { vc, value in
                 print("======\(value)")
                 vc.viewModel.fliterContact(query: value)

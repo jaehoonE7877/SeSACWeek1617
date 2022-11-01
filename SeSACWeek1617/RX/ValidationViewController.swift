@@ -31,21 +31,27 @@ class ValidationViewController: UIViewController {
     
     private func setBinding() {
         
-        viewModel.validText
-            .asDriver()
+        let input = ValidationViewModel.Input(text: nameTextField.rx.text, tap: stepButton.rx.tap)
+        let output = viewModel.transform(input: input)
+        
+        output.text
             .drive(validationLabel.rx.text)
             .disposed(by: disposeBag)
         
-        let validation = nameTextField.rx.text
-            .orEmpty // String
-            .map { $0.count >= 8 } // Bool
-            .asDriver(onErrorJustReturn: false)
-
-        validation
+        output.validation
             .drive(stepButton.rx.isEnabled, validationLabel.rx.isHidden)
             .disposed(by: disposeBag)
+        
+//        let validation = nameTextField.rx.text
+//            .orEmpty // String
+//            .map { $0.count >= 8 } // Bool
+//            .asDriver(onErrorJustReturn: false)
+//
+//        validation
+//            .drive(stepButton.rx.isEnabled, validationLabel.rx.isHidden)
+//            .disposed(by: disposeBag)
 
-        validation
+        output.validation
             .drive { [weak self] value in
                 guard let self = self else { return }
                 let color: UIColor = value ? .systemPink : .systemMint
@@ -53,7 +59,7 @@ class ValidationViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        stepButton.rx.tap
+        output.tap //Input
             .withUnretained(self)
             .bind { vc, _ in
                 vc.showAlert()

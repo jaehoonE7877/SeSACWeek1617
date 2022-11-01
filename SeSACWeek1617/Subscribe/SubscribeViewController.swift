@@ -31,8 +31,6 @@ class SubscribeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         setBinding()
         testRxAlamofire()
         testRxDataSource()
@@ -54,7 +52,6 @@ class SubscribeViewController: UIViewController {
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
-                
     }
     
     //viewmodel에 작성
